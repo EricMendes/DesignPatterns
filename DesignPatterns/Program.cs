@@ -1,4 +1,5 @@
-﻿using DesignPatterns.Observer;
+﻿using DesignPatterns.Decorator;
+using DesignPatterns.Observer;
 using DesignPatterns.Strategy;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace DesignPatterns
             Console.Clear();
             Console.WriteLine("1 - Strategy");
             Console.WriteLine("2 - Observer");
+            Console.WriteLine("3 - Decorator");
             Console.WriteLine("9 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadKey().Key;
@@ -37,6 +39,14 @@ namespace DesignPatterns
                 case ConsoleKey.D2:
                     Console.Clear();
                     TestObserver();
+                    Console.WriteLine();
+                    Console.WriteLine("Pressione qualquer tecla para voltar.");
+                    Console.ReadKey();
+                    ShowMenu();
+                    break;
+                case ConsoleKey.D3:
+                    Console.Clear();
+                    TestDecorator();
                     Console.WriteLine();
                     Console.WriteLine("Pressione qualquer tecla para voltar.");
                     Console.ReadKey();
@@ -89,6 +99,26 @@ namespace DesignPatterns
             Console.WriteLine("Removing statistics display and setting temperature.");
             weatherData.DeleteObserver(statisticsDisplay);
             weatherData.Pressure = 3.6f;
+        }
+
+        private static void TestDecorator()
+        {
+            Beverage beverage = new Espresso();
+            Console.WriteLine("{0}: {1}", beverage.Description, beverage.Cost());
+
+            Beverage beverage2 = new DarkRoast();
+            beverage2 = new Mocha(beverage2);
+            beverage2 = new Mocha(beverage2);
+            beverage2 = new Whip(beverage2);
+            Console.WriteLine("{0}: {1}", beverage2.Description, beverage2.Cost());
+
+            Beverage beverage3 = new HouseBlend();
+            beverage3 = new Soy(beverage3);
+            beverage3 = new Mocha(beverage3);
+            beverage3 = new Whip(beverage3);
+            Console.WriteLine("{0}: {1}", beverage3.Description, beverage3.Cost());
+
+
         }
     }
 }

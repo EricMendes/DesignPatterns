@@ -43,6 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorator\Beverage.cs" />
+    <Compile Include="Decorator\CondimentDecorator.cs" />
+    <Compile Include="Decorator\DarkRoast.cs" />
+    <Compile Include="Decorator\Decaf.cs" />
+    <Compile Include="Decorator\Espresso.cs" />
+    <Compile Include="Decorator\HouseBlend.cs" />
+    <Compile Include="Decorator\Milk.cs" />
+    <Compile Include="Decorator\Mocha.cs" />
+    <Compile Include="Decorator\Soy.cs" />
+    <Compile Include="Decorator\Whip.cs" />
     <Compile Include="Observer\ForecastDisplay.cs" />
     <Compile Include="Observer\GeneralDisplay.cs" />
     <Compile Include="Observer\IObserver.cs" />
