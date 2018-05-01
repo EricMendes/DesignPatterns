@@ -3,9 +3,6 @@ using DesignPatterns.Observer;
 using DesignPatterns.Strategy;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns
 {
@@ -25,40 +22,30 @@ namespace DesignPatterns
             Console.WriteLine("9 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadKey().Key;
-            Console.WriteLine();
+            Console.Clear();
             switch (opt)
             {
                 case ConsoleKey.D1:
-                    Console.Clear();
                     TestStrategy();
-                    Console.WriteLine();
-                    Console.WriteLine("Pressione qualquer tecla para voltar.");
-                    Console.ReadKey();
-                    ShowMenu();
                     break;
                 case ConsoleKey.D2:
-                    Console.Clear();
                     TestObserver();
-                    Console.WriteLine();
-                    Console.WriteLine("Pressione qualquer tecla para voltar.");
-                    Console.ReadKey();
-                    ShowMenu();
                     break;
                 case ConsoleKey.D3:
-                    Console.Clear();
                     TestDecorator();
-                    Console.WriteLine();
-                    Console.WriteLine("Pressione qualquer tecla para voltar.");
-                    Console.ReadKey();
-                    ShowMenu();
                     break;
                 case ConsoleKey.D9:
                     break;
                 default:
                     Console.WriteLine("Opção inválida.");
-                    Console.ReadKey();
-                    ShowMenu();
                     break;
+            }
+            if (opt != ConsoleKey.D9)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Pressione qualquer tecla para voltar.");
+                Console.ReadKey();
+                ShowMenu();
             }
         }
 
@@ -117,8 +104,6 @@ namespace DesignPatterns
             beverage3 = new Mocha(beverage3);
             beverage3 = new Whip(beverage3);
             Console.WriteLine("{0}: {1}", beverage3.Description, beverage3.Cost());
-
-
         }
     }
 }

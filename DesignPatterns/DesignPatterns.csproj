@@ -43,40 +43,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Decorator\Beverage.cs" />
-    <Compile Include="Decorator\CondimentDecorator.cs" />
-    <Compile Include="Decorator\DarkRoast.cs" />
-    <Compile Include="Decorator\Decaf.cs" />
-    <Compile Include="Decorator\Espresso.cs" />
-    <Compile Include="Decorator\HouseBlend.cs" />
-    <Compile Include="Decorator\Milk.cs" />
-    <Compile Include="Decorator\Mocha.cs" />
-    <Compile Include="Decorator\Soy.cs" />
-    <Compile Include="Decorator\Whip.cs" />
-    <Compile Include="Observer\ForecastDisplay.cs" />
-    <Compile Include="Observer\GeneralDisplay.cs" />
-    <Compile Include="Observer\IObserver.cs" />
-    <Compile Include="Observer\IObservable.cs" />
-    <Compile Include="Observer\StatisticsDisplay.cs" />
-    <Compile Include="Observer\WeatherData.cs" />
+    <Compile Include="Decorator\Beverages\Beverage.cs" />
+    <Compile Include="Decorator\Condiments\CondimentDecorator.cs" />
+    <Compile Include="Decorator\Beverages\DarkRoast.cs" />
+    <Compile Include="Decorator\Beverages\Decaf.cs" />
+    <Compile Include="Decorator\Beverages\Espresso.cs" />
+    <Compile Include="Decorator\Beverages\HouseBlend.cs" />
+    <Compile Include="Decorator\Condiments\Milk.cs" />
+    <Compile Include="Decorator\Condiments\Mocha.cs" />
+    <Compile Include="Decorator\Condiments\Soy.cs" />
+    <Compile Include="Decorator\Condiments\Whip.cs" />
+    <Compile Include="Factory\PizzaStore.cs" />
+    <Compile Include="Observer\Observers\ForecastDisplay.cs" />
+    <Compile Include="Observer\Observers\GeneralDisplay.cs" />
+    <Compile Include="Observer\Observers\IObserver.cs" />
+    <Compile Include="Observer\Observables\IObservable.cs" />
+    <Compile Include="Observer\Observers\StatisticsDisplay.cs" />
+    <Compile Include="Observer\Observables\WeatherData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strategy\DecoyDuck.cs" />
-    <Compile Include="Strategy\Duck.cs" />
-    <Compile Include="Strategy\FlyNoWay.cs" />
-    <Compile Include="Strategy\FlyWithWings.cs" />
-    <Compile Include="Strategy\IFlyBehavior.cs" />
-    <Compile Include="Strategy\IQuackBehavior.cs" />
-    <Compile Include="Strategy\MallardDuck.cs" />
-    <Compile Include="Strategy\MuteQuack.cs" />
-    <Compile Include="Strategy\Quack.cs" />
-    <Compile Include="Strategy\RedheadDuck.cs" />
-    <Compile Include="Strategy\RubberDuck.cs" />
-    <Compile Include="Strategy\Squeak.cs" />
+    <Compile Include="Strategy\Ducks\DecoyDuck.cs" />
+    <Compile Include="Strategy\Ducks\Duck.cs" />
+    <Compile Include="Strategy\Behaviors\Fly\FlyNoWay.cs" />
+    <Compile Include="Strategy\Behaviors\Fly\FlyWithWings.cs" />
+    <Compile Include="Strategy\Behaviors\Fly\IFlyBehavior.cs" />
+    <Compile Include="Strategy\Behaviors\Quack\IQuackBehavior.cs" />
+    <Compile Include="Strategy\Ducks\MallardDuck.cs" />
+    <Compile Include="Strategy\Behaviors\Quack\MuteQuack.cs" />
+    <Compile Include="Strategy\Behaviors\Quack\Quack.cs" />
+    <Compile Include="Strategy\Ducks\RedheadDuck.cs" />
+    <Compile Include="Strategy\Ducks\RubberDuck.cs" />
+    <Compile Include="Strategy\Behaviors\Quack\Squeak.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AbstractFactory\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
