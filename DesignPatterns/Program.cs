@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Decorator;
+using DesignPatterns.Factory;
 using DesignPatterns.Observer;
 using DesignPatterns.Strategy;
 using System;
@@ -19,6 +20,7 @@ namespace DesignPatterns
             Console.WriteLine("1 - Strategy");
             Console.WriteLine("2 - Observer");
             Console.WriteLine("3 - Decorator");
+            Console.WriteLine("4 - Factory");
             Console.WriteLine("9 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadKey().Key;
@@ -33,6 +35,9 @@ namespace DesignPatterns
                     break;
                 case ConsoleKey.D3:
                     TestDecorator();
+                    break;
+                case ConsoleKey.D4:
+                    TestFactory();
                     break;
                 case ConsoleKey.D9:
                     break;
@@ -104,6 +109,15 @@ namespace DesignPatterns
             beverage3 = new Mocha(beverage3);
             beverage3 = new Whip(beverage3);
             Console.WriteLine("{0}: {1}", beverage3.Description, beverage3.Cost());
+        }
+
+        private static void TestFactory()
+        {
+            PizzaStore nyStore = new NYStylePizzaStore();
+            PizzaStore chicagoStore = new ChicagoStylePizzaStore();
+
+            nyStore.OrderPizza(PizzaType.Cheese);
+            chicagoStore.OrderPizza(PizzaType.Cheese);
         }
     }
 }
