@@ -82,13 +82,13 @@ namespace DesignPatterns
             weatherData.Temperature = 18.1f;
             Console.WriteLine();
 
-            Console.WriteLine("Adding statistics and general display and setting temperature.");
+            Console.WriteLine("Adding statistics and general display and setting humidity.");
             weatherData.AddObserver(statisticsDisplay);
             weatherData.AddObserver(generalDisplay);
             weatherData.Humidity = 8.3f;
             Console.WriteLine();
 
-            Console.WriteLine("Removing statistics display and setting temperature.");
+            Console.WriteLine("Removing statistics display and setting pressure.");
             weatherData.DeleteObserver(statisticsDisplay);
             weatherData.Pressure = 3.6f;
         }

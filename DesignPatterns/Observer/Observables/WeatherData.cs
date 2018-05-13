@@ -4,6 +4,11 @@ namespace DesignPatterns.Observer
 {
     public class WeatherData: IObservable
     {
+        public WeatherData()
+        {
+            observers = new List<IObserver>();
+        }
+
         private float temperature;
 
         public float Temperature
@@ -32,6 +37,7 @@ namespace DesignPatterns.Observer
 
         public void AddObserver(IObserver observer)
         {
+            observers.Add(observer);
             OnDataChange += observer.Update;
         }
 
@@ -41,6 +47,7 @@ namespace DesignPatterns.Observer
 
         public void DeleteObserver(IObserver observer)
         {
+            observers.Remove(observer);
             OnDataChange -= observer.Update;
         }
 
