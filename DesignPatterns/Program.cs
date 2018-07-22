@@ -4,6 +4,7 @@ using DesignPatterns.AbstractFactory.NY;
 using DesignPatterns.Decorator;
 using DesignPatterns.Factory;
 using DesignPatterns.Observer;
+using DesignPatterns.Singleton;
 using DesignPatterns.Strategy;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace DesignPatterns
             Console.WriteLine("3 - Decorator");
             Console.WriteLine("4 - Factory");
             Console.WriteLine("5 - Abstract Factory");
+            Console.WriteLine("6 - Singleton");
             Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadKey().Key;
@@ -46,6 +48,9 @@ namespace DesignPatterns
                 case ConsoleKey.D5:
                     TestAbstractFactory();
                     break;
+                case ConsoleKey.D6:
+                    TestSingleton();
+                    break;
                 case ConsoleKey.D0:
                     break;
                 default:
@@ -59,6 +64,22 @@ namespace DesignPatterns
                 Console.ReadKey();
                 ShowMenu();
             }
+        }
+
+        private static void TestSingleton()
+        {
+            ChocolateBoiler boilerReference1 = ChocolateBoiler.GetInstance();
+            ChocolateBoiler boilerReference2 = ChocolateBoiler.GetInstance();
+
+            boilerReference1.Fill();
+            boilerReference2.Fill();
+
+            boilerReference1.Drain();
+
+            boilerReference2.Boil();
+
+            boilerReference1.Drain();
+
         }
 
         private static void TestAbstractFactory()
