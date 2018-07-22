@@ -1,4 +1,7 @@
-﻿using DesignPatterns.Decorator;
+﻿using DesignPatterns.AbstractFactory;
+using DesignPatterns.AbstractFactory.Chicago;
+using DesignPatterns.AbstractFactory.NY;
+using DesignPatterns.Decorator;
 using DesignPatterns.Factory;
 using DesignPatterns.Observer;
 using DesignPatterns.Strategy;
@@ -21,7 +24,8 @@ namespace DesignPatterns
             Console.WriteLine("2 - Observer");
             Console.WriteLine("3 - Decorator");
             Console.WriteLine("4 - Factory");
-            Console.WriteLine("9 - Sair");
+            Console.WriteLine("5 - Abstract Factory");
+            Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadKey().Key;
             Console.Clear();
@@ -39,19 +43,40 @@ namespace DesignPatterns
                 case ConsoleKey.D4:
                     TestFactory();
                     break;
-                case ConsoleKey.D9:
+                case ConsoleKey.D5:
+                    TestAbstractFactory();
+                    break;
+                case ConsoleKey.D0:
                     break;
                 default:
                     Console.WriteLine("Opção inválida.");
                     break;
             }
-            if (opt != ConsoleKey.D9)
+            if (opt != ConsoleKey.D0)
             {
                 Console.WriteLine();
                 Console.WriteLine("Pressione qualquer tecla para voltar.");
                 Console.ReadKey();
                 ShowMenu();
             }
+        }
+
+        private static void TestAbstractFactory()
+        {
+            List<IPizzaIngredientFactory> listFactories = new List<IPizzaIngredientFactory>();
+            listFactories.Add(new NYPizzaIngredientFactory());
+            listFactories.Add(new ChicagoPizzaIngredientFactory());
+
+            foreach (var factory in listFactories)
+            {
+                Console.WriteLine(factory.ToString());
+                factory.CreateDough();
+                factory.CreateClams();
+                factory.CreateSauce();
+                factory.CreateCheese();
+                Console.WriteLine();
+            }
+
         }
 
         public static void TestStrategy()
@@ -67,6 +92,7 @@ namespace DesignPatterns
                 duck.Display();
                 duck.Fly();
                 duck.Quack();
+                Console.WriteLine();
             }
         }
 
@@ -117,6 +143,8 @@ namespace DesignPatterns
             PizzaStore chicagoStore = new ChicagoStylePizzaStore();
 
             nyStore.OrderPizza(PizzaType.Cheese);
+            Console.WriteLine();
+
             chicagoStore.OrderPizza(PizzaType.Cheese);
         }
     }

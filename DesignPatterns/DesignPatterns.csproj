@@ -43,6 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractFactory\Chicago\ChicagoPizzaIngredientFactory.cs" />
+    <Compile Include="AbstractFactory\Chicago\FreshClams.cs" />
+    <Compile Include="AbstractFactory\Chicago\MarinaraSauce.cs" />
+    <Compile Include="AbstractFactory\Chicago\ReggianoCheese.cs" />
+    <Compile Include="AbstractFactory\Chicago\ThinCrustDough.cs" />
+    <Compile Include="AbstractFactory\ICheese.cs" />
+    <Compile Include="AbstractFactory\IClams.cs" />
+    <Compile Include="AbstractFactory\IDough.cs" />
+    <Compile Include="AbstractFactory\ISauce.cs" />
+    <Compile Include="AbstractFactory\NY\FrozenClams.cs" />
+    <Compile Include="AbstractFactory\NY\MozzarellaCheese.cs" />
+    <Compile Include="AbstractFactory\NY\NYPizzaIngredientFactory.cs" />
+    <Compile Include="AbstractFactory\IPizzaIngredientFactory.cs" />
+    <Compile Include="AbstractFactory\NY\PlumTomatoSauce.cs" />
+    <Compile Include="AbstractFactory\NY\ThickCrustDough.cs" />
     <Compile Include="Decorator\Beverages\Beverage.cs" />
     <Compile Include="Decorator\Condiments\CondimentDecorator.cs" />
     <Compile Include="Decorator\Beverages\DarkRoast.cs" />
@@ -84,8 +99,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AbstractFactory\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
