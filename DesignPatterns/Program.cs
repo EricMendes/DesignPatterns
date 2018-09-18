@@ -1,6 +1,9 @@
 ﻿using DesignPatterns.AbstractFactory;
 using DesignPatterns.AbstractFactory.Chicago;
 using DesignPatterns.AbstractFactory.NY;
+using DesignPatterns.Command;
+using DesignPatterns.Command.Commands;
+using DesignPatterns.Command.Vendors;
 using DesignPatterns.Decorator;
 using DesignPatterns.Factory;
 using DesignPatterns.Observer;
@@ -27,6 +30,7 @@ namespace DesignPatterns
             Console.WriteLine("4 - Factory");
             Console.WriteLine("5 - Abstract Factory");
             Console.WriteLine("6 - Singleton");
+            Console.WriteLine("7 - Command");
             Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadKey().Key;
@@ -51,6 +55,9 @@ namespace DesignPatterns
                 case ConsoleKey.D6:
                     TestSingleton();
                     break;
+                case ConsoleKey.D7:
+                    TestCommand();
+                    break;
                 case ConsoleKey.D0:
                     break;
                 default:
@@ -66,6 +73,68 @@ namespace DesignPatterns
             }
         }
 
+        private static void TestCommand()
+        {
+            RemoteControl remoteControl = new RemoteControl();
+
+            Light kitchenLight = new Light("Kitchen");
+            Light livingRoomLight = new Light("Living Room");
+            TV livingRoomTV = new TV("Living Room");
+            CeilingFan livingRoomFan = new CeilingFan("Living Room");
+            Stereo stereo = new Stereo();
+            GardenLight gardenLight = new GardenLight();
+
+            remoteControl.onCommands[0] = new LightOnCommand(kitchenLight);
+            remoteControl.offCommands[0] = new LightOffCommand(kitchenLight);
+            remoteControl.onCommands[1] = new LightOnCommand(livingRoomLight);
+            remoteControl.offCommands[1] = new LightOffCommand(livingRoomLight);
+            remoteControl.onCommands[2] = new GardenLightOnCommand(gardenLight);
+            remoteControl.offCommands[2] = new GardenLightOffCommand(gardenLight);
+            remoteControl.onCommands[3] = new CeilingFanOnCommand(livingRoomFan);
+            remoteControl.offCommands[3] = new CeilingFanOffCommand(livingRoomFan);
+            remoteControl.onCommands[4] = new StereoOnCommand(stereo);
+            remoteControl.offCommands[4] = new StereoOffCommand(stereo);
+            remoteControl.onCommands[5] = new MacroCommand(new ICommand[] {
+                    new TVOnCommand(livingRoomTV),
+                    new StereoOnCommand(stereo),
+                    new CeilingFanOnCommand(livingRoomFan),
+                    new LightOffCommand(livingRoomLight)
+                }
+            );
+            remoteControl.offCommands[5] = new MacroCommand(new ICommand[] {
+                    new TVOffCommand(livingRoomTV),
+                    new StereoOffCommand(stereo),
+                    new CeilingFanOffCommand(livingRoomFan),
+                    new LightOnCommand(livingRoomLight)
+                }
+            );
+
+            remoteControl.ExecuteOnCommand(2);
+            Console.WriteLine("-----------------------");
+            remoteControl.ExecuteOffCommand(2);
+            Console.WriteLine("-----------------------");
+            remoteControl.ExecuteOnCommand(0);
+            Console.WriteLine("-----------------------");
+            remoteControl.ExecuteOnCommand(6);
+            Console.WriteLine("-----------------------");
+            remoteControl.ExecuteOffCommand(0);
+            Console.WriteLine("-----------------------");
+            remoteControl.ExecuteOnCommand(5);
+            Console.WriteLine("-----------------------");
+            remoteControl.UndoCommand();
+            Console.WriteLine("-----------------------");
+            remoteControl.UndoCommand();
+            Console.WriteLine("-----------------------");
+
+            remoteControl.onCommands[2] = new GardenLightSummerTimeCommand(gardenLight);
+            remoteControl.offCommands[2] = new GardenLightStandardTimeCommand(gardenLight);
+
+            remoteControl.ExecuteOnCommand(2);
+            Console.WriteLine("-----------------------");
+            remoteControl.ExecuteOffCommand(2);
+            Console.WriteLine("-----------------------");
+        }
+
         private static void TestSingleton()
         {
             ChocolateBoiler boilerReference1 = ChocolateBoiler.GetInstance();
@@ -79,12 +148,11 @@ namespace DesignPatterns
             boilerReference2.Boil();
 
             boilerReference1.Drain();
-
         }
 
         private static void TestAbstractFactory()
         {
-            List<IPizzaIngredientFactory> listFactories = new List<IPizzaIngredientFactory>();
+            List<PizzaIngredientFactory> listFactories = new List<PizzaIngredientFactory>();
             listFactories.Add(new NYPizzaIngredientFactory());
             listFactories.Add(new ChicagoPizzaIngredientFactory());
 
@@ -97,7 +165,6 @@ namespace DesignPatterns
                 factory.CreateCheese();
                 Console.WriteLine();
             }
-
         }
 
         public static void TestStrategy()

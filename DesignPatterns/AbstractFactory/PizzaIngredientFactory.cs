@@ -1,13 +1,13 @@
 ﻿namespace DesignPatterns.AbstractFactory
 {
-    public abstract class IPizzaIngredientFactory
+    public abstract class PizzaIngredientFactory
     {
         protected IDough Dough;
         protected ISauce Sauce;
         protected IClams Clams;
         protected ICheese Cheese;
 
-        protected IPizzaIngredientFactory(IDough dough, ISauce sauce, IClams clams, ICheese cheese)
+        protected PizzaIngredientFactory(IDough dough, ISauce sauce, IClams clams, ICheese cheese)
         {
             Dough = dough;
             Sauce = sauce;
