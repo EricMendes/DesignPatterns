@@ -14,12 +14,12 @@ namespace DesignPatterns.Strategy
 
         public abstract void Display();
 
-        public void Fly()
+        public virtual void Fly()
         {
             FlyBehavior.Fly();
         }
 
-        public void Quack()
+        public virtual void Quack()
         {
             QuackBehavior.Quack();
         }

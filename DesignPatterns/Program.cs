@@ -1,6 +1,7 @@
 ﻿using DesignPatterns.AbstractFactory;
 using DesignPatterns.AbstractFactory.Chicago;
 using DesignPatterns.AbstractFactory.NY;
+using DesignPatterns.Adapter;
 using DesignPatterns.Command;
 using DesignPatterns.Command.Commands;
 using DesignPatterns.Command.Vendors;
@@ -31,6 +32,7 @@ namespace DesignPatterns
             Console.WriteLine("5 - Abstract Factory");
             Console.WriteLine("6 - Singleton");
             Console.WriteLine("7 - Command");
+            Console.WriteLine("8 - Adapter");
             Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadKey().Key;
@@ -58,6 +60,9 @@ namespace DesignPatterns
                 case ConsoleKey.D7:
                     TestCommand();
                     break;
+                case ConsoleKey.D8:
+                    TestAdapter();
+                    break;
                 case ConsoleKey.D0:
                     break;
                 default:
@@ -70,6 +75,28 @@ namespace DesignPatterns
                 Console.WriteLine("Pressione qualquer tecla para voltar.");
                 Console.ReadKey();
                 ShowMenu();
+            }
+        }
+
+        private static void TestAdapter()
+        {
+            List<Duck> Ducks = new List<Duck>();
+            Ducks.Add(new MallardDuck());
+            Ducks.Add(new RedheadDuck());
+            Ducks.Add(new RubberDuck());
+            Ducks.Add(new DecoyDuck());
+
+            var turkey = new WildTurkey();
+            var adapter = new TurkeyAdapter(turkey);
+
+            Ducks.Add(adapter);
+
+            foreach (var duck in Ducks)
+            {
+                duck.Display();
+                duck.Fly();
+                duck.Quack();
+                Console.WriteLine();
             }
         }
 

@@ -58,6 +58,13 @@
     <Compile Include="AbstractFactory\PizzaIngredientFactory.cs" />
     <Compile Include="AbstractFactory\NY\PlumTomatoSauce.cs" />
     <Compile Include="AbstractFactory\NY\ThickCrustDough.cs" />
+    <Compile Include="Adapter\Adapters\GobbleAdapter.cs" />
+    <Compile Include="Adapter\Behaviors\Fly\FlyShortDistance.cs" />
+    <Compile Include="Adapter\Behaviors\Gobble\Gobble.cs" />
+    <Compile Include="Adapter\Behaviors\Gobble\IGobbleBehavior.cs" />
+    <Compile Include="Adapter\Turkey.cs" />
+    <Compile Include="Adapter\Adapters\TurkeyAdapter.cs" />
+    <Compile Include="Adapter\WildTurkey.cs" />
     <Compile Include="Command\Commands\CeilingFanOffCommand.cs" />
     <Compile Include="Command\Commands\CeilingFanOnCommand.cs" />
     <Compile Include="Command\Commands\GardenLightStandardTimeCommand.cs" />
