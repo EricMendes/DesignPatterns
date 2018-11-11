@@ -6,6 +6,8 @@ using DesignPatterns.Command;
 using DesignPatterns.Command.Commands;
 using DesignPatterns.Command.Vendors;
 using DesignPatterns.Decorator;
+using DesignPatterns.Facade;
+using DesignPatterns.Facade.Components;
 using DesignPatterns.Factory;
 using DesignPatterns.Observer;
 using DesignPatterns.Singleton;
@@ -33,6 +35,7 @@ namespace DesignPatterns
             Console.WriteLine("6 - Singleton");
             Console.WriteLine("7 - Command");
             Console.WriteLine("8 - Adapter");
+            Console.WriteLine("9 - Facade");
             Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadKey().Key;
@@ -63,6 +66,9 @@ namespace DesignPatterns
                 case ConsoleKey.D8:
                     TestAdapter();
                     break;
+                case ConsoleKey.D9:
+                    TestFacade();
+                    break;
                 case ConsoleKey.D0:
                     break;
                 default:
@@ -78,6 +84,28 @@ namespace DesignPatterns
             }
         }
 
+        /// <summary>
+        /// O padrã facade fornece uma interface simplificada para um subsistema.
+        /// </summary>
+        private static void TestFacade()
+        {
+            HomeTheaterFacade homeTheater = new HomeTheaterFacade(
+                new Amplifier(),
+                new Tuner(),
+                new DvdPlayer(),
+                new CdPlayer(),
+                new Projector(),
+                new EnvironmentLight(),
+                new Screen(),
+                new PopcornMachine()
+                );
+            homeTheater.WatchMovie("Fight Club");
+        }
+
+        /// <summary>
+        /// O padrão adapter altera uma interface para torná-la compatível com
+        /// o que o cliente está esperando.
+        /// </summary>
         private static void TestAdapter()
         {
             List<Duck> Ducks = new List<Duck>();

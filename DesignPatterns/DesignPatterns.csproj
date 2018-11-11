@@ -98,6 +98,15 @@
     <Compile Include="Decorator\Condiments\Mocha.cs" />
     <Compile Include="Decorator\Condiments\Soy.cs" />
     <Compile Include="Decorator\Condiments\Whip.cs" />
+    <Compile Include="Facade\Components\Amplifier.cs" />
+    <Compile Include="Facade\Components\CdPlayer.cs" />
+    <Compile Include="Facade\Components\DvdPlayer.cs" />
+    <Compile Include="Facade\Components\EnvironmentLight.cs" />
+    <Compile Include="Facade\Components\PopcornMachine.cs" />
+    <Compile Include="Facade\Components\Projector.cs" />
+    <Compile Include="Facade\Components\Screen.cs" />
+    <Compile Include="Facade\Components\Tuner.cs" />
+    <Compile Include="Facade\HomeTheaterFacade.cs" />
     <Compile Include="Factory\ChicagoStyleCheesePizza.cs" />
     <Compile Include="Factory\ChicagoStylePizzaStore.cs" />
     <Compile Include="Factory\NYStyleCheesePizza.cs" />
