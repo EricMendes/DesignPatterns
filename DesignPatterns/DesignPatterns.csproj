@@ -135,6 +135,9 @@
     <Compile Include="Strategy\Ducks\RedheadDuck.cs" />
     <Compile Include="Strategy\Ducks\RubberDuck.cs" />
     <Compile Include="Strategy\Behaviors\Quack\Squeak.cs" />
+    <Compile Include="TemplateMethod\CaffeineBeverage.cs" />
+    <Compile Include="TemplateMethod\Coffee.cs" />
+    <Compile Include="TemplateMethod\Tea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

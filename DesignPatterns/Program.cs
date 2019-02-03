@@ -12,6 +12,7 @@ using DesignPatterns.Factory;
 using DesignPatterns.Observer;
 using DesignPatterns.Singleton;
 using DesignPatterns.Strategy;
+using DesignPatterns.TemplateMethod;
 using System;
 using System.Collections.Generic;
 
@@ -36,46 +37,50 @@ namespace DesignPatterns
             Console.WriteLine("7 - Command");
             Console.WriteLine("8 - Adapter");
             Console.WriteLine("9 - Facade");
+            Console.WriteLine("10 - Template Method");
             Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
-            var opt = Console.ReadKey().Key;
+            var opt = Console.ReadLine();
             Console.Clear();
             switch (opt)
             {
-                case ConsoleKey.D1:
+                case "1":
                     TestStrategy();
                     break;
-                case ConsoleKey.D2:
+                case "2":
                     TestObserver();
                     break;
-                case ConsoleKey.D3:
+                case "3":
                     TestDecorator();
                     break;
-                case ConsoleKey.D4:
+                case "4":
                     TestFactory();
                     break;
-                case ConsoleKey.D5:
+                case "5":
                     TestAbstractFactory();
                     break;
-                case ConsoleKey.D6:
+                case "6":
                     TestSingleton();
                     break;
-                case ConsoleKey.D7:
+                case "7":
                     TestCommand();
                     break;
-                case ConsoleKey.D8:
+                case "8":
                     TestAdapter();
                     break;
-                case ConsoleKey.D9:
+                case "9":
                     TestFacade();
                     break;
-                case ConsoleKey.D0:
+                case "10":
+                    TestTemplateMethod();
+                    break;
+                case "0":
                     break;
                 default:
                     Console.WriteLine("Opção inválida.");
                     break;
             }
-            if (opt != ConsoleKey.D0)
+            if (opt != "0")
             {
                 Console.WriteLine();
                 Console.WriteLine("Pressione qualquer tecla para voltar.");
@@ -85,7 +90,21 @@ namespace DesignPatterns
         }
 
         /// <summary>
-        /// O padrã facade fornece uma interface simplificada para um subsistema.
+        /// O padrão Template Method define o esqueleto de um algoritmo dentro de um método, transferindo alguns de seus passos para as subclasses. 
+        /// O Template Method permite que as subclasses redefinam certos passos de um algoritmo sem alterar a estrutura do próprio algoritmo.
+        /// </summary>
+        private static void TestTemplateMethod()
+        {
+            Coffee coffee = new Coffee();
+            coffee.PrepareRecipe();
+            Console.WriteLine("----------------------");
+            Tea tea = new Tea();
+            tea.PrepareRecipe();
+        }
+
+        /// <summary>
+        /// O padrão facade fornece uma interface simplificada para um conjunto de interfaces em um subsistema. Ele define uma interface de nível mais 
+        /// alto que facilita a utilização do subsistema.
         /// </summary>
         private static void TestFacade()
         {
@@ -103,8 +122,8 @@ namespace DesignPatterns
         }
 
         /// <summary>
-        /// O padrão adapter altera uma interface para torná-la compatível com
-        /// o que o cliente está esperando.
+        /// O padrão Adapter converte a interface de uma classe para outra interface que o cliente espera encontrar. Ele permite que classes com interfaces
+        /// incompatíveis trabalhem juntas.
         /// </summary>
         private static void TestAdapter()
         {
@@ -128,6 +147,11 @@ namespace DesignPatterns
             }
         }
 
+
+        /// <summary>
+        /// O padrão Command encapsula uma solicitação como um objeto, o que lhe permite parametrizar outros objetos com diferentes solicitações,
+        /// enfileirar ou registrar solicitações e implementar recursos de cancelamento de operações.
+        /// </summary>
         private static void TestCommand()
         {
             RemoteControl remoteControl = new RemoteControl();
@@ -190,6 +214,9 @@ namespace DesignPatterns
             Console.WriteLine("-----------------------");
         }
 
+        /// <summary>
+        /// O padrão Singleton garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a ela.
+        /// </summary>
         private static void TestSingleton()
         {
             ChocolateBoiler boilerReference1 = ChocolateBoiler.GetInstance();
@@ -205,6 +232,9 @@ namespace DesignPatterns
             boilerReference1.Drain();
         }
 
+        /// <summary>
+        /// O padrão Abstract Factory fornece uma interface para criar famílias de objetos relacionados ou dependentes sem especificar suas classes concretas.
+        /// </summary>
         private static void TestAbstractFactory()
         {
             List<PizzaIngredientFactory> listFactories = new List<PizzaIngredientFactory>();
@@ -222,6 +252,11 @@ namespace DesignPatterns
             }
         }
 
+
+        /// <summary>
+        /// O padrão Strategy define uma família de algoritmos , encapsula cada um deles e os torna intercamibáveis. Ele deixa o algoritmo variar 
+        /// independente dos clientes que a utilizam.
+        /// </summary>
         public static void TestStrategy()
         {
             List<Duck> Ducks = new List<Duck>();
@@ -239,6 +274,10 @@ namespace DesignPatterns
             }
         }
 
+        /// <summary>
+        /// O padrão Observer define a dependência um-para-muitos entre objetos para que quando um objeto mude de estado todos os seus dependentes
+        /// sejam avisados e atualizados automaticamente.
+        /// </summary>
         public static void TestObserver()
         {
             WeatherData weatherData = new WeatherData();
@@ -262,6 +301,10 @@ namespace DesignPatterns
             weatherData.Pressure = 3.6f;
         }
 
+        /// <summary>
+        /// O padrão Decorator anexa responsabilidades adicionais a um objeto dinamicamente. Os decoradores fornecem uma alternativa mais flexível de
+        /// subclasses para estender a funcionalidade.
+        /// </summary>
         private static void TestDecorator()
         {
             Beverage beverage = new Espresso();
@@ -280,6 +323,10 @@ namespace DesignPatterns
             Console.WriteLine("{0}: {1}", beverage3.Description, beverage3.Cost());
         }
 
+        /// <summary>
+        /// O padrão Factory Method define uma interface para criar um objeto, mas permite às classes decidir qual classe instanciar.
+        /// Ele permite a uma classe deferir a instanciação para subclasses.
+        /// </summary>
         private static void TestFactory()
         {
             PizzaStore nyStore = new NYStylePizzaStore();
