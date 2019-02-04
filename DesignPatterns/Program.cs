@@ -9,11 +9,13 @@ using DesignPatterns.Decorator;
 using DesignPatterns.Facade;
 using DesignPatterns.Facade.Components;
 using DesignPatterns.Factory;
+using DesignPatterns.Iterator;
 using DesignPatterns.Observer;
 using DesignPatterns.Singleton;
 using DesignPatterns.Strategy;
 using DesignPatterns.TemplateMethod;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace DesignPatterns
@@ -38,6 +40,7 @@ namespace DesignPatterns
             Console.WriteLine("8 - Adapter");
             Console.WriteLine("9 - Facade");
             Console.WriteLine("10 - Template Method");
+            Console.WriteLine("11 - Iterator");
             Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadLine();
@@ -74,6 +77,9 @@ namespace DesignPatterns
                 case "10":
                     TestTemplateMethod();
                     break;
+                case "11":
+                    TestIterator();
+                    break;
                 case "0":
                     break;
                 default:
@@ -86,6 +92,27 @@ namespace DesignPatterns
                 Console.WriteLine("Pressione qualquer tecla para voltar.");
                 Console.ReadKey();
                 ShowMenu();
+            }
+        }
+
+        /// <summary>
+        /// O padrão Iterator fornece uma maneira de acessar sequenacialmente os elementos de um objeto agregado sem expor sua representação subjacente.
+        /// </summary>
+        private static void TestIterator()
+        {
+            PancakeHouseMenu pancakeMenu = new PancakeHouseMenu();
+            DinerMenu dinerMenu = new DinerMenu();
+
+            foreach (var item in pancakeMenu)
+            {
+                var menuItem = (MenuItem)item;
+                Console.WriteLine(string.Format("{0},{1} -- {2}", menuItem.Name, menuItem.Price, menuItem.Description));
+            }
+
+            Console.WriteLine("---------------------------------------");
+            foreach (var item in dinerMenu)
+            {
+                Console.WriteLine(string.Format("{0},{1} -- {2}", item.Name, item.Price, item.Description));
             }
         }
 
@@ -254,8 +281,8 @@ namespace DesignPatterns
 
 
         /// <summary>
-        /// O padrão Strategy define uma família de algoritmos , encapsula cada um deles e os torna intercamibáveis. Ele deixa o algoritmo variar 
-        /// independente dos clientes que a utilizam.
+        /// O padrão Strategy define uma família de algoritmos , encapsula cada um deles e os torna intercambiáveis. Ele deixa o algoritmo variar 
+        /// independente dos clientes que o utilizam.
         /// </summary>
         public static void TestStrategy()
         {

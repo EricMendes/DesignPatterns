@@ -114,6 +114,10 @@
     <Compile Include="Factory\Pizza.cs" />
     <Compile Include="Factory\PizzaStore.cs" />
     <Compile Include="Factory\PizzaType.cs" />
+    <Compile Include="Iterator\DinerMenu.cs" />
+    <Compile Include="Iterator\DinerMenuIterator.cs" />
+    <Compile Include="Iterator\MenuItem.cs" />
+    <Compile Include="Iterator\PancakeHouseMenu.cs" />
     <Compile Include="Observer\Observers\ForecastDisplay.cs" />
     <Compile Include="Observer\Observers\GeneralDisplay.cs" />
     <Compile Include="Observer\Observers\IObserver.cs" />
