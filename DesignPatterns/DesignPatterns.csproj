@@ -88,6 +88,11 @@
     <Compile Include="Command\Vendors\Sprinkler.cs" />
     <Compile Include="Command\Vendors\Stereo.cs" />
     <Compile Include="Command\Vendors\TV.cs" />
+    <Compile Include="Composite\ComponentType.cs" />
+    <Compile Include="Composite\IMenuComponent.cs" />
+    <Compile Include="Composite\Menu.cs" />
+    <Compile Include="Composite\MenuItem.cs" />
+    <Compile Include="Composite\MenuIterator.cs" />
     <Compile Include="Decorator\Beverages\Beverage.cs" />
     <Compile Include="Decorator\Condiments\CondimentDecorator.cs" />
     <Compile Include="Decorator\Beverages\DarkRoast.cs" />

@@ -5,6 +5,7 @@ using DesignPatterns.Adapter;
 using DesignPatterns.Command;
 using DesignPatterns.Command.Commands;
 using DesignPatterns.Command.Vendors;
+using DesignPatterns.Composite;
 using DesignPatterns.Decorator;
 using DesignPatterns.Facade;
 using DesignPatterns.Facade.Components;
@@ -41,6 +42,7 @@ namespace DesignPatterns
             Console.WriteLine("9 - Facade");
             Console.WriteLine("10 - Template Method");
             Console.WriteLine("11 - Iterator");
+            Console.WriteLine("12 - Composite");
             Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadLine();
@@ -80,6 +82,9 @@ namespace DesignPatterns
                 case "11":
                     TestIterator();
                     break;
+                case "12":
+                    TestComposite();
+                    break;
                 case "0":
                     break;
                 default:
@@ -95,6 +100,33 @@ namespace DesignPatterns
             }
         }
 
+        private static void TestComposite()
+        {
+            Menu dinerMenu = new Menu("Diner", "Lunch");
+            dinerMenu.AddItem(new Composite.MenuItem("Vegetarian BLT", "(Fakin) Bacon with lettuce & tomato on whole wheat", true, 2.99));
+            dinerMenu.AddItem(new Composite.MenuItem("BLT", "Bacon with lettuce & tomato on whole wheat", false, 2.99));
+            dinerMenu.AddItem(new Composite.MenuItem("Soup of the day", "Soup of the day, with a side of potato salad", false, 3.29));
+            dinerMenu.AddItem(new Composite.MenuItem("Hotdog", "A hot dog, with saurkraut, relish, onions, topped with cheese", false, 3.05));
+
+            Menu pancakeMenu = new Menu("Pancake", "Breakfast");
+            pancakeMenu.AddItem(new Composite.MenuItem("K&B's Pancake Breakfast", "Pancakes with scrambled eggs, and toast", true, 2.99));
+            pancakeMenu.AddItem(new Composite.MenuItem("Regular Pancake Breakfast", "Pancakes with fried eggs, sausage", false, 2.99));
+            pancakeMenu.AddItem(new Composite.MenuItem("Blueberry Pancakes", "Pancakes made with fresh blueberries", true, 3.49));
+            pancakeMenu.AddItem(new Composite.MenuItem("Waffles", "Waffles of your choice with blueberries or strawberries", true, 3.59));
+
+            Menu dessertMenu = new Menu("Dessert", "Dessert, of course");
+            dessertMenu.AddItem(new Composite.MenuItem("Veggie Burger and Air Fries", "Veggie burger on a whole wheat bun", true, 3.99));
+            dessertMenu.AddItem(new Composite.MenuItem("Cheesecake", "Creamy New York Cheesecake, with chocolate graham crust", false, 1.89));
+            dinerMenu.AddItem(dessertMenu);
+
+            var items = new IMenuComponent[2];
+            items[0] = dinerMenu;
+            items[1] = pancakeMenu;
+
+            var iterator = new MenuIterator(items);
+            iterator.PrintMenu();
+        }
+
         /// <summary>
         /// O padrão Iterator fornece uma maneira de acessar sequenacialmente os elementos de um objeto agregado sem expor sua representação subjacente.
         /// </summary>
@@ -105,7 +137,7 @@ namespace DesignPatterns
 
             foreach (var item in pancakeMenu)
             {
-                var menuItem = (MenuItem)item;
+                var menuItem = (Iterator.MenuItem)item;
                 Console.WriteLine(string.Format("{0},{1} -- {2}", menuItem.Name, menuItem.Price, menuItem.Description));
             }
 
