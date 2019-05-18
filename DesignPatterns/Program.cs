@@ -13,10 +13,10 @@ using DesignPatterns.Factory;
 using DesignPatterns.Iterator;
 using DesignPatterns.Observer;
 using DesignPatterns.Singleton;
+using DesignPatterns.State;
 using DesignPatterns.Strategy;
 using DesignPatterns.TemplateMethod;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace DesignPatterns
@@ -43,6 +43,7 @@ namespace DesignPatterns
             Console.WriteLine("10 - Template Method");
             Console.WriteLine("11 - Iterator");
             Console.WriteLine("12 - Composite");
+            Console.WriteLine("13 - State");
             Console.WriteLine("0 - Sair");
             Console.Write("Selecione uma opção: ");
             var opt = Console.ReadLine();
@@ -85,6 +86,9 @@ namespace DesignPatterns
                 case "12":
                     TestComposite();
                     break;
+                case "13":
+                    TestState();
+                    break;
                 case "0":
                     break;
                 default:
@@ -100,6 +104,69 @@ namespace DesignPatterns
             }
         }
 
+        private static void TestState()
+        {
+            GumballMachine gumballMachine = new GumballMachine(1);
+
+            Console.WriteLine("--Chamando todos os métodos que não mudam o estado do estado atual: {0}", gumballMachine.GetState());
+            gumballMachine.EjectQuarter();
+            gumballMachine.TurnCrank();
+            gumballMachine.ReleaseGum();
+            Console.WriteLine("--Inserindo a moeda para alterar o estado.");
+            gumballMachine.InsertQuarter();
+            Console.WriteLine("--{0} gomas.", gumballMachine.Count);
+            Console.WriteLine("-----------------------------------------");
+
+            Console.WriteLine("--Chamando todos os métodos que não mudam o estado do estado atual: {0}", gumballMachine.GetState());
+            gumballMachine.InsertQuarter();
+            gumballMachine.ReleaseGum();
+            Console.WriteLine("--Ejetando a moeda para alterar o estado.");
+            gumballMachine.EjectQuarter();
+            Console.WriteLine("--{0} gomas.", gumballMachine.Count);
+            Console.WriteLine("-----------------------------------------");
+
+            Console.WriteLine("--Chamando todos os métodos que não mudam o estado do estado atual: {0}", gumballMachine.GetState());
+            gumballMachine.EjectQuarter();
+            gumballMachine.TurnCrank();
+            gumballMachine.ReleaseGum();
+            Console.WriteLine("--Inserindo novamente a moeda para alterar o estado.");
+            gumballMachine.InsertQuarter();
+            Console.WriteLine("--{0} gomas.", gumballMachine.Count);
+            Console.WriteLine("-----------------------------------------");
+
+            Console.WriteLine("--Chamando todos os métodos que não mudam o estado do estado atual: {0}", gumballMachine.GetState());
+            gumballMachine.InsertQuarter();
+            gumballMachine.ReleaseGum();
+            Console.WriteLine("--Virando a engrenagem.");
+            gumballMachine.TurnCrank();
+            Console.WriteLine("--{0} gomas.", gumballMachine.Count);
+            Console.WriteLine("-----------------------------------------");
+
+            Console.WriteLine("--Chamando todos os métodos que não mudam o estado do estado atual: {0}", gumballMachine.GetState());
+            gumballMachine.InsertQuarter();
+            gumballMachine.EjectQuarter();
+            gumballMachine.TurnCrank();
+            Console.WriteLine("--Dispensando a goma.");
+            gumballMachine.ReleaseGum();
+            Console.WriteLine("--{0} gomas.", gumballMachine.Count);
+            Console.WriteLine("-----------------------------------------");
+
+            Console.WriteLine("--Chamando todos os métodos que não mudam o estado do estado atual: {0}", gumballMachine.GetState());
+            gumballMachine.EjectQuarter();
+            gumballMachine.TurnCrank();
+            gumballMachine.ReleaseGum();
+            gumballMachine.EjectQuarter();
+            Console.WriteLine("--Repondo as gomas.");
+            gumballMachine.Fill();
+            Console.WriteLine("--{0} gomas.", gumballMachine.Count);
+            Console.WriteLine("-----------------------------------------");
+
+            Console.WriteLine("--Estado atual: {0}", gumballMachine.GetState());
+        }
+
+        /// <summary>
+        /// O padrão State permite que um objeto altere o seu comportamento quando o seu estado interno muda. O objeto parecerá ter mudado de classe.
+        /// </summary>
         private static void TestComposite()
         {
             Menu dinerMenu = new Menu("Diner", "Lunch");
